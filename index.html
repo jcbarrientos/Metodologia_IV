@@ -4,26 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InvestigaEnf — Metodología de Investigación en Enfermería</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Calibri es la fuente institucional USFX — disponible como fuente del sistema -->
 <style>
 /* ===================== VARIABLES ===================== */
 :root {
-  --teal:       #0d9488;
-  --teal-light: #5eead4;
-  --teal-dark:  #0f766e;
-  --sky:        #0ea5e9;
-  --amber:      #f59e0b;
+  --teal:       #C0392B;
+  --teal-light: #E8654A;
+  --teal-dark:  #962D22;
+  --sky:        #E8654A;
+  --amber:      #E8654A;
   --rose:       #f43f5e;
   --green:      #22c55e;
   --purple:     #8b5cf6;
-  --bg:         #0f172a;
-  --bg2:        #1e293b;
-  --bg3:        #334155;
-  --text:       #f1f5f9;
-  --text2:      #94a3b8;
-  --border:     #334155;
-  --card:       #1e293b;
+  --bg:         #1A2E4A;
+  --bg2:        #1E3A5F;
+  --bg3:        #2E4D72;
+  --text:       #FFFFFF;
+  --text2:      #C8D8EC;
+  --border:     #2E4D72;
+  --card:       #1E3A5F;
   --radius:     16px;
   --radius-sm:  10px;
 }
@@ -32,7 +31,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -45,7 +44,7 @@ body {
 
 /* ===================== HERO / HOME ===================== */
 #screen-home {
-  background: linear-gradient(135deg, #0f172a 0%, #0f2a2a 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #1A2E4A 0%, #2E4D72 50%, #1A2E4A 100%);
   position: relative;
   align-items: center;
   justify-content: center;
@@ -57,26 +56,24 @@ body {
   content: '';
   position: absolute;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 .hero-badge {
   display: inline-block;
-  background: rgba(13,148,136,0.2);
-  border: 1px solid var(--teal);
-  color: var(--teal-light);
-  font-size: 0.75rem;
+  color: var(--teal);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 0.4rem 1rem;
-  border-radius: 99px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--teal);
+  padding-left: 0.75rem;
 }
 .hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: clamp(2.2rem, 6vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
@@ -110,14 +107,14 @@ body {
 .home-card:hover {
   transform: translateY(-4px);
   border-color: var(--teal);
-  box-shadow: 0 8px 32px rgba(13,148,136,0.2);
+  box-shadow: 0 8px 32px rgba(192,57,43,0.2);
 }
 .home-card-icon {
   font-size: 2.2rem;
   margin-bottom: 0.8rem;
 }
 .home-card h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
@@ -133,7 +130,7 @@ body {
   padding: 0.25rem 0.7rem;
   border-radius: 99px;
 }
-.tag-teal { background: rgba(13,148,136,0.2); color: var(--teal-light); }
+.tag-teal { background: rgba(192,57,43,0.2); color: var(--teal-light); }
 .tag-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
 
 /* ===================== TOP NAV ===================== */
@@ -141,14 +138,14 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: rgba(15,23,42,0.9);
-  backdrop-filter: blur(10px);
+  padding: 0.85rem 1.5rem 0.85rem 1.8rem;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
+  border-left: 5px solid var(--teal);
   position: sticky; top: 0; z-index: 100;
 }
 .topnav-logo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-weight: 800;
   font-size: 1.1rem;
   color: var(--teal-light);
@@ -163,7 +160,7 @@ body {
   padding: 0.4rem 1rem;
   border-radius: 99px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.85rem;
   transition: all 0.2s;
 }
@@ -247,11 +244,11 @@ body {
   padding: 0.45rem 1rem;
   border-radius: 99px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.85rem;
   transition: all 0.2s;
 }
-.chat-option-btn:hover { background: rgba(13,148,136,0.15); }
+.chat-option-btn:hover { background: rgba(192,57,43,0.15); }
 
 .chat-input-area {
   display: flex;
@@ -266,7 +263,7 @@ body {
   color: var(--text);
   padding: 0.75rem 1.1rem;
   border-radius: 99px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s;
@@ -284,7 +281,7 @@ body {
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex; align-items: center; justify-content: center;
 }
-.chat-send:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(13,148,136,0.4); }
+.chat-send:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(192,57,43,0.4); }
 
 .typing-indicator {
   display: flex; align-items: center; gap: 4px;
@@ -312,7 +309,7 @@ body {
   margin: 0.5rem 0;
 }
 .profile-result h4 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -347,10 +344,10 @@ body {
 .game-card:hover {
   transform: translateY(-3px);
   border-color: var(--teal);
-  box-shadow: 0 6px 24px rgba(13,148,136,0.15);
+  box-shadow: 0 6px 24px rgba(192,57,43,0.15);
 }
 .game-card .gicon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.game-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.game-card h3 { font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
 .game-card p { font-size: 0.78rem; color: var(--text2); }
 .game-card .gdiff {
   display: inline-block;
@@ -381,7 +378,7 @@ body {
   margin-bottom: 1.5rem;
 }
 .game-title-area h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-weight: 700;
   font-size: 1.3rem;
 }
@@ -455,7 +452,7 @@ body {
   padding: 0.85rem 1.1rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.9rem;
   text-align: left;
   transition: all 0.18s;
@@ -463,7 +460,7 @@ body {
   align-items: flex-start;
   gap: 0.75rem;
 }
-.option-btn:hover:not(:disabled) { border-color: var(--teal); background: rgba(13,148,136,0.08); }
+.option-btn:hover:not(:disabled) { border-color: var(--teal); background: rgba(192,57,43,0.08); }
 .option-btn:disabled { cursor: default; }
 .option-btn.correct { border-color: var(--green); background: rgba(34,197,94,0.12); color: #86efac; }
 .option-btn.wrong   { border-color: var(--rose);  background: rgba(244,63,94,0.12);  color: #fda4af; }
@@ -499,14 +496,14 @@ body {
   padding: 0.8rem 2rem;
   border-radius: 99px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   transition: transform 0.2s, box-shadow 0.2s;
   display: none;
 }
 .btn-next.show { display: inline-flex; align-items: center; gap: 0.5rem; }
-.btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,0.35); }
+.btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(192,57,43,0.35); }
 
 /* DRAG-DROP GAME (Juego 2) */
 .dragdrop-container {
@@ -548,7 +545,7 @@ body {
   min-height: 64px;
   transition: border-color 0.2s, background 0.2s;
 }
-.drop-zone.over { border-color: var(--teal); background: rgba(13,148,136,0.06); }
+.drop-zone.over { border-color: var(--teal); background: rgba(192,57,43,0.06); }
 .drop-zone-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -557,8 +554,8 @@ body {
 }
 .drop-zone-items { display: flex; flex-direction: column; gap: 0.3rem; }
 .dropped-item {
-  background: rgba(13,148,136,0.15);
-  border: 1px solid rgba(13,148,136,0.3);
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.3);
   border-radius: 6px;
   padding: 0.4rem 0.7rem;
   font-size: 0.8rem;
@@ -583,7 +580,7 @@ body {
   padding: 0.75rem 2rem;
   border-radius: 99px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   margin-right: 0.75rem;
@@ -612,7 +609,7 @@ body {
   color: var(--text);
   border-radius: var(--radius-sm);
   padding: 0.85rem 1rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
   resize: vertical;
@@ -654,7 +651,7 @@ body {
   color: var(--text);
   padding: 0.55rem 0.85rem;
   border-radius: var(--radius-sm);
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.85rem;
   cursor: pointer;
   outline: none;
@@ -678,7 +675,7 @@ body {
 }
 .results-emoji { font-size: 4rem; margin-bottom: 1rem; }
 .results-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 1.8rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
@@ -687,7 +684,7 @@ body {
   font-size: 3.5rem;
   font-weight: 800;
   color: var(--teal-light);
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   margin: 0.5rem 0;
 }
 .results-msg { font-size: 0.95rem; color: var(--text2); margin-bottom: 2rem; line-height: 1.6; }
@@ -698,7 +695,7 @@ body {
   padding: 0.75rem 1.5rem;
   border-radius: 99px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   margin-right: 0.75rem;
@@ -719,7 +716,7 @@ body {
 
 /* MISC */
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Calibri', 'Gill Sans MT', 'Trebuchet MS', Arial, sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
   padding: 1.5rem 1.5rem 0.25rem;
@@ -742,7 +739,7 @@ body {
 <!-- ==================== HOME ==================== -->
 <div id="screen-home" class="screen active">
   <div style="position:relative;z-index:1;width:100%;max-width:860px;margin:0 auto;">
-    <div class="hero-badge">✦ Capítulo 4 · Metodología de Investigación</div>
+    <div class="hero-badge">CAPÍTULO 4 · METODOLOGÍA DE INVESTIGACIÓN</div>
     <h1 class="hero-title">Aprende a investigar<br><span>en Enfermería</span></h1>
     <p class="hero-sub">Herramienta interactiva para estudiantes de 2.º año. Define tu problema de investigación con ayuda de IA y fortalece tus conocimientos con actividades.</p>
     <div class="home-cards">
@@ -852,13 +849,20 @@ Tu rol es guiar al estudiante paso a paso para formular un perfil de investigaci
 4. Pregunta qué aspecto concreto quiere entender: ¿la frecuencia/magnitud? ¿los factores asociados? ¿el efecto de una intervención? ¿las experiencias vividas?
 5. Pregunta el período de tiempo (año o semestre).
 6. Preguntar si sabe algo de lo que ya se ha investigado sobre el tema en Bolivia o en la región.
-7. Con todas las respuestas, genera el perfil completo en formato estructurado con etiquetas claras: PROBLEMA DE INVESTIGACIÓN, OBJETIVO GENERAL, OBJETIVOS ESPECÍFICOS (3), ENFOQUE, TIPO Y DISEÑO, HIPÓTESIS (indica si corresponde o no y por qué).
+7. Con todas las respuestas, genera el perfil completo en formato estructurado con etiquetas claras, en este orden exacto:
+PROBLEMA DE INVESTIGACIÓN: párrafo explicativo de la situación problemática (no en forma de pregunta).
+PREGUNTA DE INVESTIGACIÓN: formulada como ¿[qué aspecto / cuál es el nivel de] [variable principal] [en la población] [en el lugar] [en el período]?
+OBJETIVO GENERAL
+OBJETIVOS ESPECÍFICOS (3)
+ENFOQUE
+TIPO Y DISEÑO
+HIPÓTESIS (indica si corresponde o no y por qué).
 
 Reglas importantes:
 - Usa un tono amigable, motivador y cercano. Tutea al estudiante.
 - Cada mensaje tuyo debe ser breve (máx 3 párrafos).
 - Usa ejemplos del contexto boliviano cuando sea útil (SEDES Chuquisaca, SAFCI, tuberculosis, desnutrición, mortalidad materna, etc.).
-- En el paso 7, cuando generas el perfil, usa el formato: **SECCIÓN:** contenido. Que sea específico al tema del estudiante, no genérico.
+- En el paso 7, cuando generas el perfil, usa el formato: **SECCIÓN:** contenido. Que sea específico al tema del estudiante, no genérico. La **PREGUNTA DE INVESTIGACIÓN** debe seguir estrictamente la estructura: ¿[qué aspecto / cuál es el nivel de] [variable principal] [en la población] [en el lugar] [en el período]?
 - Si el estudiante da respuestas vagas, ayúdale a especificar con ejemplos concretos.
 - Responde siempre en español.`;
 
