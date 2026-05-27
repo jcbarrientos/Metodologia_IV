@@ -24,7 +24,12 @@ module.exports = async function handler(req, res) {
     );
 
     const data = await response.json();
+    if (!response.ok) {
+      const errMsg = data.error?.message || JSON.stringify(data);
+      return res.status(502).json({ error: `Gemini API error (${response.status}): ${errMsg}` });
+    }
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    if (!text) return res.status(502).json({ error: 'Gemini returned no text. Response: ' + JSON.stringify(data) });
     return res.status(200).json({ text });
   } catch (error) {
     return res.status(500).json({ error: error.message });
