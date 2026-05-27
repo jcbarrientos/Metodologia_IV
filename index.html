@@ -970,11 +970,12 @@ async function callGemini() {
       chatHistory.push({ role: 'assistant', content: data.text });
       addBotMessage(data.text);
     } else {
-      addBotMessage('Lo siento, hubo un problema de conexión. ¿Intentamos de nuevo?', ['Reintentar']);
+      const errDetail = data.error ? ` (${data.error})` : '';
+      addBotMessage(`Lo siento, hubo un error al conectar con la IA${errDetail}. ¿Intentamos de nuevo?`, ['Reintentar']);
     }
   } catch (e) {
     removeTyping();
-    addBotMessage('Parece que hay un problema de conexión. Verifica tu internet e intenta de nuevo.');
+    addBotMessage(`Error de conexión: ${e.message}. Verifica tu internet e intenta de nuevo.`);
   }
 }
 
