@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InvestigaEnf — Metodología de Investigación en Enfermería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== VARIABLES ===================== */
+:root {
+  --teal:       #0d9488;
+  --teal-light: #5eead4;
+  --teal-dark:  #0f766e;
+  --sky:        #0ea5e9;
+  --amber:      #f59e0b;
+  --rose:       #f43f5e;
+  --green:      #22c55e;
+  --purple:     #8b5cf6;
+  --bg:         #0f172a;
+  --bg2:        #1e293b;
+  --bg3:        #334155;
+  --text:       #f1f5f9;
+  --text2:      #94a3b8;
+  --border:     #334155;
+  --card:       #1e293b;
+  --radius:     16px;
+  --radius-sm:  10px;
+}
+
+/* ===================== RESET ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===================== LAYOUT ===================== */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ===================== HERO / HOME ===================== */
+#screen-home {
+  background: linear-gradient(135deg, #0f172a 0%, #0f2a2a 50%, #0f172a 100%);
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+#screen-home::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(13,148,136,0.2);
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hero-title span { color: var(--teal-light); }
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text2);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+.home-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  text-align: left;
+}
+.home-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 8px 32px rgba(13,148,136,0.2);
+}
+.home-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+.home-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.home-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+.home-card .card-tag {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+}
+.tag-teal { background: rgba(13,148,136,0.2); color: var(--teal-light); }
+.tag-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
+
+/* ===================== TOP NAV ===================== */
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(15,23,42,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.topnav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--teal-light);
+  cursor: pointer;
+}
+.topnav-logo span { color: var(--text2); font-weight: 400; }
+.topnav-back {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 0.4rem 1rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.topnav-back:hover { border-color: var(--teal); color: var(--teal-light); }
+
+/* ===================== CHAT (MÓDULO 1) ===================== */
+#screen-chat {
+  background: var(--bg);
+}
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.msg {
+  display: flex;
+  gap: 0.75rem;
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.msg-bot .msg-avatar { background: linear-gradient(135deg, var(--teal), var(--sky)); }
+.msg-user .msg-avatar { background: var(--bg3); }
+.msg-user { flex-direction: row-reverse; }
+.msg-bubble {
+  max-width: 78%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.msg-bot .msg-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top-left-radius: 4px;
+}
+.msg-user .msg-bubble {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.msg-bubble strong { color: var(--teal-light); }
+.msg-bubble ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+.msg-bubble li { margin-bottom: 0.3rem; }
+
+.chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0 1rem;
+  padding-left: 48px;
+}
+.chat-option-btn {
+  background: transparent;
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  padding: 0.45rem 1rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.chat-option-btn:hover { background: rgba(13,148,136,0.15); }
+
+.chat-input-area {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 0 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.chat-input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1.1rem;
+  border-radius: 99px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--teal); }
+.chat-input::placeholder { color: var(--text2); }
+.chat-send {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  border: none;
+  color: #fff;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.chat-send:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(13,148,136,0.4); }
+
+.typing-indicator {
+  display: flex; align-items: center; gap: 4px;
+  padding: 0.6rem 1rem;
+}
+.typing-dot {
+  width: 6px; height: 6px;
+  background: var(--text2);
+  border-radius: 50%;
+  animation: bounce 1s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+/* ===================== RESULTADO PERFIL ===================== */
+.profile-result {
+  background: var(--card);
+  border: 1px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 0.5rem 0;
+}
+.profile-result h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal-light);
+  margin-bottom: 0.4rem;
+}
+.profile-result p { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
+.profile-result + .profile-result { margin-top: 0.75rem; }
+
+/* ===================== MÓDULO 2 — JUEGOS ===================== */
+#screen-games {
+  background: var(--bg);
+}
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.game-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+  box-shadow: 0 6px 24px rgba(13,148,136,0.15);
+}
+.game-card .gicon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.game-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.game-card p { font-size: 0.78rem; color: var(--text2); }
+.game-card .gdiff {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.7rem;
+  border-radius: 99px;
+}
+.diff-easy   { background: rgba(34,197,94,0.2);  color: #86efac; }
+.diff-medium { background: rgba(245,158,11,0.2); color: #fcd34d; }
+.diff-hard   { background: rgba(244,63,94,0.2);  color: #fda4af; }
+
+/* ===================== GAME SCREEN ===================== */
+#screen-game-play {
+  background: var(--bg);
+}
+.game-play-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  flex: 1;
+}
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.game-title-area h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.game-title-area p { font-size: 0.8rem; color: var(--text2); margin-top: 0.2rem; }
+.score-badge {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.score-badge span { color: var(--teal-light); }
+
+.progress-bar-wrap {
+  background: var(--bg3);
+  border-radius: 99px;
+  height: 6px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--sky));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.question-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.question-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin-bottom: 0.75rem;
+}
+.question-text {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+.question-text em {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text2);
+  font-size: 0.9rem;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.option-btn {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  text-align: left;
+  transition: all 0.18s;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--teal); background: rgba(13,148,136,0.08); }
+.option-btn:disabled { cursor: default; }
+.option-btn.correct { border-color: var(--green); background: rgba(34,197,94,0.12); color: #86efac; }
+.option-btn.wrong   { border-color: var(--rose);  background: rgba(244,63,94,0.12);  color: #fda4af; }
+.option-letter {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.option-btn.correct .option-letter { background: rgba(34,197,94,0.3); }
+.option-btn.wrong   .option-letter { background: rgba(244,63,94,0.3); }
+
+.feedback-box {
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: none;
+}
+.feedback-box.show { display: block; animation: fadeUp 0.3s ease; }
+.feedback-box.good { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  color: #86efac; }
+.feedback-box.bad  { background: rgba(244,63,94,0.1);  border: 1px solid rgba(244,63,94,0.3);  color: #fda4af; }
+
+.btn-next {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  border: none;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: none;
+}
+.btn-next.show { display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,0.35); }
+
+/* DRAG-DROP GAME (Juego 2) */
+.dragdrop-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 560px) { .dragdrop-container { grid-template-columns: 1fr; } }
+.drag-items-col h4, .drop-zones-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  margin-bottom: 0.75rem;
+}
+.drag-item {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  cursor: grab;
+  font-size: 0.83rem;
+  line-height: 1.45;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.drag-item:active { cursor: grabbing; }
+.drag-item.dragging { opacity: 0.4; }
+.drag-item.placed { opacity: 0.35; cursor: default; }
+
+.drop-zone {
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.6rem;
+  min-height: 64px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.drop-zone.over { border-color: var(--teal); background: rgba(13,148,136,0.06); }
+.drop-zone-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sky);
+  margin-bottom: 0.4rem;
+}
+.drop-zone-items { display: flex; flex-direction: column; gap: 0.3rem; }
+.dropped-item {
+  background: rgba(13,148,136,0.15);
+  border: 1px solid rgba(13,148,136,0.3);
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.dropped-item .remove-drop {
+  background: none; border: none; cursor: pointer;
+  color: var(--text2); font-size: 0.85rem; padding: 0; line-height: 1;
+}
+.drop-zone.correct-zone { border-color: var(--green); border-style: solid; background: rgba(34,197,94,0.06); }
+.drop-zone.wrong-zone   { border-color: var(--rose);  border-style: solid; background: rgba(244,63,94,0.06); }
+.dropped-item.correct-item { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.4); color: #86efac; }
+.dropped-item.wrong-item   { background: rgba(244,63,94,0.15);  border-color: rgba(244,63,94,0.4);  color: #fda4af; }
+
+.btn-check {
+  background: var(--amber);
+  border: none;
+  color: #000;
+  padding: 0.75rem 2rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-right: 0.75rem;
+  transition: transform 0.2s;
+}
+.btn-check:hover { transform: translateY(-2px); }
+
+/* CASE GAME (Juego 3 - Caso Roxana) */
+.case-text {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.case-text strong { color: var(--amber); }
+.case-input-label { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.4rem; }
+.case-textarea {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 0.75rem;
+}
+.case-textarea:focus { border-color: var(--teal); }
+.ai-feedback-box {
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #c4b5fd;
+  margin-bottom: 1rem;
+  display: none;
+}
+.ai-feedback-box.show { display: block; animation: fadeUp 0.3s ease; }
+.ai-feedback-box strong { color: #a78bfa; }
+
+/* VARIABLES GAME (Juego 4) */
+.var-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.var-card p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+.var-selects { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.var-select-wrap { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 160px; }
+.var-select-wrap label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); }
+.var-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.var-select:focus { border-color: var(--teal); }
+.var-select.correct-sel { border-color: var(--green); background: rgba(34,197,94,0.1); color: #86efac; }
+.var-select.wrong-sel   { border-color: var(--rose);  background: rgba(244,63,94,0.1);  color: #fda4af; }
+
+/* RESULTS */
+.results-screen {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.results-emoji { font-size: 4rem; margin-bottom: 1rem; }
+.results-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.results-score {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--teal-light);
+  font-family: 'Syne', sans-serif;
+  margin: 0.5rem 0;
+}
+.results-msg { font-size: 0.95rem; color: var(--text2); margin-bottom: 2rem; line-height: 1.6; }
+.btn-replay {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-right: 0.75rem;
+  transition: all 0.2s;
+}
+.btn-replay:hover { border-color: var(--teal); color: var(--teal-light); }
+
+/* LOADING SPINNER */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* MISC */
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  padding: 1.5rem 1.5rem 0.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.section-sub {
+  font-size: 0.88rem;
+  color: var(--text2);
+  padding: 0 1.5rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HOME ==================== -->
+<div id="screen-home" class="screen active">
+  <div style="position:relative;z-index:1;width:100%;max-width:860px;margin:0 auto;">
+    <div class="hero-badge">✦ Capítulo 4 · Metodología de Investigación</div>
+    <h1 class="hero-title">Aprende a investigar<br><span>en Enfermería</span></h1>
+    <p class="hero-sub">Herramienta interactiva para estudiantes de 2.º año. Define tu problema de investigación con ayuda de IA y fortalece tus conocimientos con actividades.</p>
+    <div class="home-cards">
+      <div class="home-card" onclick="showScreen('chat')">
+        <div class="home-card-icon">💬</div>
+        <h3>Asistente de Perfil</h3>
+        <p>Responde preguntas guiadas y la IA te ayuda a construir tu problema, objetivos y diseño de investigación.</p>
+        <span class="card-tag tag-teal">Módulo 1 · IA</span>
+      </div>
+      <div class="home-card" onclick="showScreen('games')">
+        <div class="home-card-icon">🎮</div>
+        <h3>Actividades de Aprendizaje</h3>
+        <p>5 juegos interactivos para afianzar los tipos y diseños de investigación, variables y el proceso científico.</p>
+        <span class="card-tag tag-amber">Módulo 2 · 5 juegos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MÓDULO 1: CHAT ==================== -->
+<div id="screen-chat" class="screen">
+  <nav class="topnav">
+    <span class="topnav-logo">InvestigaEnf <span>/ Asistente</span></span>
+    <button class="topnav-back" onclick="showScreen('home')">← Inicio</button>
+  </nav>
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages"></div>
+    <div id="chat-options-area" class="chat-options"></div>
+    <div class="chat-input-area">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Escribe tu respuesta…" autocomplete="off">
+      <button class="chat-send" onclick="sendUserMessage()" title="Enviar">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MÓDULO 2: LISTA JUEGOS ==================== -->
+<div id="screen-games" class="screen">
+  <nav class="topnav">
+    <span class="topnav-logo">InvestigaEnf <span>/ Actividades</span></span>
+    <button class="topnav-back" onclick="showScreen('home')">← Inicio</button>
+  </nav>
+  <div class="section-title">🎮 Actividades de Aprendizaje</div>
+  <div class="section-sub">Elige una actividad para practicar. Cada una evalúa un tema diferente del Capítulo 4.</div>
+  <div class="games-grid">
+    <div class="game-card" onclick="startGame('errores')">
+      <div class="gicon">🔍</div>
+      <h3>¿Correcto o incorrecto?</h3>
+      <p>Identifica errores en la formulación de problemas de investigación.</p>
+      <span class="gdiff diff-easy">Básico</span>
+    </div>
+    <div class="game-card" onclick="startGame('disenios')">
+      <div class="gicon">🔗</div>
+      <h3>Conecta con su diseño</h3>
+      <p>Arrastra cada pregunta de investigación al diseño metodológico que le corresponde.</p>
+      <span class="gdiff diff-medium">Intermedio</span>
+    </div>
+    <div class="game-card" onclick="startGame('roxana')">
+      <div class="gicon">📋</div>
+      <h3>El caso de Roxana</h3>
+      <p>Analiza y corrige el perfil de investigación con errores del caso del capítulo.</p>
+      <span class="gdiff diff-hard">Avanzado · IA</span>
+    </div>
+    <div class="game-card" onclick="startGame('variables')">
+      <div class="gicon">📊</div>
+      <h3>Clasifica las variables</h3>
+      <p>Clasifica variables por su función y escala de medición en estudios de enfermería.</p>
+      <span class="gdiff diff-medium">Intermedio</span>
+    </div>
+    <div class="game-card" onclick="startGame('trivia')">
+      <div class="gicon">🏆</div>
+      <h3>Trivia del Proceso</h3>
+      <p>Preguntas de opción múltiple sobre las fases del proceso de investigación científica.</p>
+      <span class="gdiff diff-easy">Básico</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== GAME PLAY ==================== -->
+<div id="screen-game-play" class="screen">
+  <nav class="topnav">
+    <span class="topnav-logo" id="game-nav-title">InvestigaEnf</span>
+    <button class="topnav-back" onclick="showScreen('games')">← Juegos</button>
+  </nav>
+  <div id="game-play-content" style="flex:1;display:flex;flex-direction:column;"></div>
+</div>
+
+<script>
+/* ========================================================
+   NAVIGATION
+   ======================================================== */
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ========================================================
+   MÓDULO 1 — CHAT ASISTENTE
+   ======================================================== */
+const CHAT_SYSTEM = `Eres un asistente pedagógico especializado en metodología de investigación en enfermería para estudiantes universitarios de Bolivia (2.º año de Licenciatura en Enfermería, Universidad San Francisco Xavier de Chuquisaca).
+
+Tu rol es guiar al estudiante paso a paso para formular un perfil de investigación completo. Sigue exactamente esta secuencia de 7 preguntas, una por turno:
+
+1. Pregunta qué situación clínica, comunitaria o educativa les preocupa o llama la atención en la práctica de enfermería.
+2. Pregunta en quiénes ocurre: la población (pacientes, cuidadores, comunidad, etc.).
+3. Pregunta el lugar o contexto específico (nombre del establecimiento, municipio).
+4. Pregunta qué aspecto concreto quiere entender: ¿la frecuencia/magnitud? ¿los factores asociados? ¿el efecto de una intervención? ¿las experiencias vividas?
+5. Pregunta el período de tiempo (año o semestre).
+6. Preguntar si sabe algo de lo que ya se ha investigado sobre el tema en Bolivia o en la región.
+7. Con todas las respuestas, genera el perfil completo en formato estructurado con etiquetas claras: PROBLEMA DE INVESTIGACIÓN, OBJETIVO GENERAL, OBJETIVOS ESPECÍFICOS (3), ENFOQUE, TIPO Y DISEÑO, HIPÓTESIS (indica si corresponde o no y por qué).
+
+Reglas importantes:
+- Usa un tono amigable, motivador y cercano. Tutea al estudiante.
+- Cada mensaje tuyo debe ser breve (máx 3 párrafos).
+- Usa ejemplos del contexto boliviano cuando sea útil (SEDES Chuquisaca, SAFCI, tuberculosis, desnutrición, mortalidad materna, etc.).
+- En el paso 7, cuando generas el perfil, usa el formato: **SECCIÓN:** contenido. Que sea específico al tema del estudiante, no genérico.
+- Si el estudiante da respuestas vagas, ayúdale a especificar con ejemplos concretos.
+- Responde siempre en español.`;
+
+let chatHistory = [];
+let chatStarted = false;
+
+function initChat() {
+  chatHistory = [];
+  chatStarted = false;
+  document.getElementById('chat-messages').innerHTML = '';
+  document.getElementById('chat-options-area').innerHTML = '';
+  document.getElementById('chat-input').value = '';
+  addBotMessage('¡Hola! 👋 Soy tu asistente para formular tu perfil de investigación en enfermería. Voy a hacerte unas preguntas para ayudarte a construir tu problema de investigación, objetivos y diseño paso a paso.\n\n¿Estás listo/a para empezar?', ['¡Sí, vamos!', 'Cuéntame más']);
+}
+
+function addBotMessage(text, options = []) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg msg-bot';
+
+  const formatted = text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+
+  div.innerHTML = `
+    <div class="msg-avatar">🤖</div>
+    <div class="msg-bubble">${formatted}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  const optArea = document.getElementById('chat-options-area');
+  optArea.innerHTML = '';
+  if (options.length > 0) {
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-option-btn';
+      btn.textContent = opt;
+      btn.onclick = () => { sendUserMessage(opt); };
+      optArea.appendChild(btn);
+    });
+  }
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg msg-user';
+  div.innerHTML = `<div class="msg-avatar">👤</div><div class="msg-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('chat-options-area').innerHTML = '';
+}
+
+function addTyping() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg msg-bot';
+  div.id = 'typing-msg';
+  div.innerHTML = `<div class="msg-avatar">🤖</div>
+    <div class="msg-bubble"><div class="typing-indicator">
+      <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+    </div></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-msg');
+  if (t) t.remove();
+}
+
+async function sendUserMessage(text) {
+  const input = document.getElementById('chat-input');
+  const msg = text || input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  if (!chatStarted && (msg.toLowerCase().includes('sí') || msg.toLowerCase().includes('si') || msg.toLowerCase().includes('vamos'))) {
+    chatStarted = true;
+    addUserMessage(msg);
+    chatHistory.push({ role: 'user', content: msg });
+    addTyping();
+    await callGemini();
+    return;
+  }
+
+  if (!chatStarted) {
+    addUserMessage(msg);
+    addBotMessage('¡Genial! Cuando estés listo/a, da clic en "¡Sí, vamos!" para empezar. 😊', ['¡Sí, vamos!']);
+    return;
+  }
+
+  addUserMessage(msg);
+  chatHistory.push({ role: 'user', content: msg });
+  addTyping();
+  await callGemini();
+}
+
+async function callGemini() {
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: chatHistory, systemPrompt: CHAT_SYSTEM })
+    });
+    const data = await res.json();
+    removeTyping();
+    if (data.text) {
+      chatHistory.push({ role: 'assistant', content: data.text });
+      addBotMessage(data.text);
+    } else {
+      addBotMessage('Lo siento, hubo un problema de conexión. ¿Intentamos de nuevo?', ['Reintentar']);
+    }
+  } catch (e) {
+    removeTyping();
+    addBotMessage('Parece que hay un problema de conexión. Verifica tu internet e intenta de nuevo.');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('chat-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendUserMessage();
+  });
+});
+
+// Init chat when entering that screen
+const origShowScreen = window.showScreen;
+window.showScreen = function(name) {
+  origShowScreen(name);
+  if (name === 'chat' && !chatStarted && document.getElementById('chat-messages').childElementCount === 0) {
+    initChat();
+  }
+};
+
+/* ========================================================
+   MÓDULO 2 — JUEGOS
+   ======================================================== */
+
+/* ----- DATOS: JUEGO 1 — Errores ----- */
+const gameErrores = {
+  title: '🔍 ¿Correcto o incorrecto?',
+  subtitle: 'Identifica si el problema está bien formulado o tiene un error',
+  questions: [
+    {
+      text: 'Lee este enunciado y decide si es un problema de investigación válido:',
+      quote: '«Los registros de enfermería son fundamentales para la calidad de la atención en los hospitales de Bolivia.»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación, no una pregunta', '❌ Error: describe el método', '❌ Error: demasiado amplio'],
+      answer: 1,
+      feedback: '¡Exacto! Este enunciado es una afirmación verdadera, pero no hay nada que investigar. Un problema de investigación debe expresar una brecha de conocimiento como pregunta específica, por ejemplo: "¿Qué nivel de calidad presentan los registros de enfermería en el servicio de cirugía del Hospital Bracamonte durante el primer semestre de 2025?"'
+    },
+    {
+      text: 'Evalúa el siguiente enunciado:',
+      quote: '«Se aplicará una encuesta a pacientes diabéticos del Hospital San Juan de Oruro para evaluar su adherencia al tratamiento.»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación, no una pregunta', '❌ Error: describe el método, no la brecha', '❌ Error: incluye múltiples preguntas'],
+      answer: 2,
+      feedback: 'Correcto. Este enunciado describe lo que el investigador va a hacer (aplicar una encuesta), no lo que se desconoce. La metodología es un medio, no el problema. La versión correcta sería: "¿Cuál es el nivel de adherencia al tratamiento farmacológico en pacientes con diabetes mellitus tipo 2 atendidos en consulta externa del Hospital San Juan de Oruro durante el año 2025?"'
+    },
+    {
+      text: 'Analiza este problema de investigación:',
+      quote: '«¿Cómo es la salud de los bolivianos y cuáles son sus hábitos alimenticios, niveles de actividad física, adherencia a tratamientos y acceso a servicios de salud?»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación, no una pregunta', '❌ Error: describe el método', '❌ Error: incluye múltiples preguntas a la vez'],
+      answer: 3,
+      feedback: '¡Bien identificado! Este problema incluye al menos cuatro preguntas en una sola. Un problema de investigación debe enfocarse en una sola pregunta específica. Además, "los bolivianos" es una población demasiado amplia. Cada una de esas preguntas podría ser un estudio independiente con su propia población y contexto definidos.'
+    },
+    {
+      text: 'Evalúa el siguiente problema de investigación:',
+      quote: '«¿Cuál es el nivel de adherencia al tratamiento antituberculoso en pacientes adultos del Centro de Salud Corazón de Jesús de Sucre durante el primer semestre de 2025?»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación, no una pregunta', '❌ Error: describe el método', '❌ Error: demasiado amplio o múltiples preguntas'],
+      answer: 0,
+      feedback: '¡Correcto! Este problema está bien formulado. Contiene los cuatro elementos esenciales: la variable de interés (nivel de adherencia al tratamiento antituberculoso), la población (pacientes adultos), el contexto (Centro de Salud Corazón de Jesús de Sucre) y el período (primer semestre de 2025). Es una pregunta específica y respondible.'
+    },
+    {
+      text: 'Lee con atención:',
+      quote: '«Se propone investigar la calidad de los cuidados de enfermería en el Hospital Bracamonte de Sucre durante el año 2025.»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación o declaración de intención, no un problema', '❌ Error: demasiado amplio', '❌ Error: incluye múltiples preguntas'],
+      answer: 1,
+      feedback: 'Exacto. "Se propone investigar…" es una declaración de intenciones, no un problema de investigación. El problema debe enunciar qué se desconoce, no anunciar que se va a investigar. La versión correcta sería: "¿Qué nivel de calidad presentan los cuidados de enfermería en el servicio de medicina interna del Hospital Bracamonte de Sucre durante el año 2025?"'
+    },
+    {
+      text: 'Clasifica este enunciado:',
+      quote: '«¿Qué factores socioeconómicos y culturales se asocian a la mortalidad materna en municipios rurales del departamento de Chuquisaca durante el período 2023-2025?»',
+      options: ['✅ Correcto — está bien formulado', '❌ Error: es una afirmación, no una pregunta', '❌ Error: describe el método', '❌ Error: incluye múltiples preguntas'],
+      answer: 0,
+      feedback: '¡Correcto! Este es un problema de investigación correlacional bien formulado. Identifica claramente los factores a investigar (socioeconómicos y culturales), el fenómeno (mortalidad materna), la población implícita (madres en municipios rurales), el contexto (Chuquisaca) y el período. Es específico y orientado a identificar asociaciones, lo cual corresponde a un diseño correlacional.'
+    }
+  ]
+};
+
+/* ----- DATOS: JUEGO 2 — Diseños ----- */
+const gameDiseños = {
+  title: '🔗 Conecta con su diseño',
+  subtitle: 'Arrastra cada pregunta al diseño de investigación que corresponde',
+  items: [
+    { id: 'p1', text: '¿Cuál es el nivel de adherencia al tratamiento farmacológico en pacientes con hipertensión arterial del Centro de Salud Norte de Sucre, primer semestre 2025?' },
+    { id: 'p2', text: '¿Qué factores socioeconómicos y maternos se asocian a la desnutrición crónica en niños menores de 5 años de comunidades rurales del municipio de Sucre, 2025?' },
+    { id: 'p3', text: '¿Cuál es el efecto de un programa educativo de enfermería sobre el control glucémico en pacientes diabéticos del Hospital Santa Bárbara, 2025?' },
+    { id: 'p4', text: '¿Cómo vivencian el proceso del parto las mujeres quechuas que acuden al Centro de Salud de Tarabuco?' },
+    { id: 'p5', text: '¿Cuál es la prevalencia del síndrome de burnout en el personal de enfermería de los hospitales de segundo nivel de Sucre en 2025?' },
+    { id: 'p6', text: '¿Qué relación existe entre el turno laboral y la calidad de los registros de enfermería en el Hospital Bracamonte?' },
+  ],
+  zones: [
+    { id: 'z1', label: 'Descriptivo transversal', correct: ['p1', 'p5'] },
+    { id: 'z2', label: 'Correlacional / analítico', correct: ['p2', 'p6'] },
+    { id: 'z3', label: 'Cuasiexperimental / experimental', correct: ['p3'] },
+    { id: 'z4', label: 'Cualitativo fenomenológico', correct: ['p4'] },
+  ]
+};
+
+/* ----- DATOS: JUEGO 3 — Caso Roxana ----- */
+const gameRoxana = {
+  title: '📋 El caso de Roxana',
+  subtitle: 'Analiza el perfil con errores y ayuda a corregirlo con IA',
+  steps: [
+    {
+      question: 'Lee el perfil original de Roxana. ¿Cuántos errores puedes identificar? Descríbelos.',
+      context: `<strong>Problema:</strong> «La tuberculosis es una enfermedad grave y el abandono del tratamiento es un problema serio en Bolivia.»<br><br>
+<strong>Objetivo general:</strong> «Investigar la tuberculosis en el Centro de Salud Corazón de Jesús.»<br><br>
+<strong>Objetivos específicos:</strong><br>
+(1) Revisar la bibliografía sobre tuberculosis.<br>
+(2) Aplicar encuestas a los pacientes con tuberculosis.<br>
+(3) Conocer los factores que llevan al abandono.<br><br>
+<strong>Hipótesis:</strong> «Los pacientes abandonan el tratamiento porque no entienden la importancia de terminarlo.»<br><br>
+<strong>Tipo:</strong> cuantitativa.`,
+      placeholder: 'Describe los errores que identificas en el perfil de Roxana...',
+      aiPrompt: (resp) => `Eres un docente de metodología de investigación en enfermería en Bolivia. Un estudiante de 2.º año analizó el siguiente perfil con errores:\n\nProblema: «La tuberculosis es una enfermedad grave...»\nObjetivo: «Investigar la tuberculosis...»\nOE: (1) Revisar bibliografía (2) Aplicar encuestas (3) Conocer factores\nHipótesis: «Los pacientes abandonan porque no entienden...»\n\nLa respuesta del estudiante fue: "${resp}"\n\nDa retroalimentación constructiva en 3-4 párrafos. Confirma los errores bien identificados (el problema es una afirmación no una pregunta; el OG es vago; los OE describen actividades metodológicas no resultados esperables; la hipótesis es una suposición no verificable como está; falta diseño específico). Si el estudiante no identificó algunos errores, señálalos con amabilidad. Termina alentando al estudiante. Usa español boliviano cercano y amigable. Sé conciso.`
+    },
+    {
+      question: 'Ahora reformula el problema de investigación de Roxana usando las 7 preguntas guía del capítulo. Contexto: Centro de Salud Corazón de Jesús de Sucre, pacientes adultos en tratamiento por tuberculosis pulmonar, fenómeno observado: abandono del tratamiento a los 2-3 meses.',
+      context: null,
+      placeholder: 'Escribe aquí tu reformulación del problema de investigación...',
+      aiPrompt: (resp) => `Eres un docente de metodología de investigación en enfermería en Bolivia. Un estudiante de 2.º año reformuló el problema de Roxana sobre tuberculosis. Su respuesta: "${resp}"\n\nEvalúa si la reformulación contiene los 4 elementos esenciales: variable/fenómeno de interés, población definida, contexto específico y período. El problema correcto debería ser algo como: "¿Cuál es el nivel de adherencia al tratamiento antituberculoso en pacientes adultos del Centro de Salud Corazón de Jesús de Sucre durante el año 2025?" o similar enfocado en describir el fenómeno o los factores asociados. Da retroalimentación específica sobre qué estuvo bien y qué mejorar. Sé motivador y conciso (máx 3 párrafos). Español boliviano amigable.`
+    },
+    {
+      question: 'Con el problema corregido, formula el objetivo general y tres objetivos específicos. Recuerda: el OG debe usar un verbo preciso (Determinar, Identificar, Describir, Analizar) y los OE deben ordenarse de lo descriptivo a lo analítico.',
+      context: null,
+      placeholder: 'Escribe el objetivo general y los tres objetivos específicos...',
+      aiPrompt: (resp) => `Eres un docente de metodología de investigación en enfermería en Bolivia. Un estudiante formuló objetivos para el estudio de Roxana sobre abandono del tratamiento antituberculoso en el Centro de Salud Corazón de Jesús. Su respuesta: "${resp}"\n\nEvalúa: (1) Si el OG usa un verbo operativo preciso y medible, (2) Si los OE siguen un orden lógico de lo descriptivo a lo analítico, (3) Si los OE son coherentes con un estudio descriptivo o correlacional transversal, (4) Si los OE no describen actividades metodológicas (error de Roxana). Da retroalimentación constructiva y específica. Máx 3 párrafos. Español amigable.`
+    }
+  ]
+};
+
+/* ----- DATOS: JUEGO 4 — Variables ----- */
+const gameVariables = {
+  title: '📊 Clasifica las variables',
+  subtitle: 'Clasifica cada variable por función y escala de medición',
+  questions: [
+    {
+      text: 'En un estudio sobre adherencia al tratamiento antihipertensivo en pacientes del Centro de Salud Norte de Sucre, se mide: <strong>Tipo de intervención recibida</strong> (seguimiento telefónico mensual vs. atención convencional).',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 0 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 0 },
+      feedback: 'La variable que el investigador manipula o supone que influye es la INDEPENDIENTE. Al tener solo dos categorías sin orden entre ellas (dos tipos de intervención), la escala es NOMINAL.'
+    },
+    {
+      text: 'En el mismo estudio sobre hipertensión: <strong>Nivel de adherencia al tratamiento al tercer mes</strong> (medido con el Test de Morisky-Green: adherente / no adherente).',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 1 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 0 },
+      feedback: 'El resultado que se quiere explicar es la variable DEPENDIENTE. El Test de Morisky-Green clasifica en dos categorías sin orden intrínseco entre sí (adherente/no adherente), por lo tanto la escala es NOMINAL dicotómica.'
+    },
+    {
+      text: 'En un estudio sobre desnutrición infantil en comunidades rurales de Chuquisaca: <strong>Nivel educativo de la madre</strong> (sin educación / primaria / secundaria / técnica o universitaria).',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 0 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 1 },
+      feedback: 'En estudios sobre desnutrición, el nivel educativo materno suele ser la variable INDEPENDIENTE (el factor que supone influir en el resultado). Las categorías tienen un orden claro (más o menos años de estudio), pero la distancia entre ellas no es uniforme, por tanto la escala es ORDINAL.'
+    },
+    {
+      text: 'En un estudio sobre calidad de los registros de enfermería en el Hospital Bracamonte: <strong>Turno laboral del personal</strong> (diurno / nocturno).',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 0 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 0 },
+      feedback: 'El turno es la variable INDEPENDIENTE (el factor que se supone influye en la calidad de los registros). Diurno/nocturno son dos categorías sin orden entre sí: escala NOMINAL.'
+    },
+    {
+      text: 'En un estudio de adherencia terapéutica en pacientes diabéticos: <strong>Presión arterial sistólica</strong> en mmHg al momento de la consulta.',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 2 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 3 },
+      feedback: 'La presión arterial puede relacionarse tanto con la adherencia (VI) como con el resultado clínico (VD), distorsionando los resultados si no se controla: es una variable CONFUSORA. Al tener un cero absoluto (ausencia real de presión) y unidades numéricas continuas, la escala es DE RAZÓN.'
+    },
+    {
+      text: 'En cualquier estudio de enfermería comunitaria en Bolivia: <strong>Procedencia</strong> del participante (urbana / rural).',
+      func: { options: ['Independiente', 'Dependiente', 'Confusora', 'Sociodemográfica'], answer: 3 },
+      scale: { options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'], answer: 0 },
+      feedback: 'La procedencia es una variable SOCIODEMOGRÁFICA, utilizada para describir la muestra y permitir comparación de subgrupos. En Bolivia es especialmente relevante por las diferencias en acceso y condiciones de salud entre áreas urbanas y rurales. Las categorías urbana/rural no tienen orden entre sí: escala NOMINAL.'
+    }
+  ]
+};
+
+/* ----- DATOS: JUEGO 5 — Trivia ----- */
+const gameTrivia = {
+  title: '🏆 Trivia del Proceso de Investigación',
+  subtitle: 'Preguntas de opción múltiple sobre el Capítulo 4',
+  questions: [
+    {
+      text: '¿En cuál de las siguientes fases del proceso de investigación se formula el problema de investigación?',
+      options: ['Fase empírica', 'Fase conceptual', 'Fase metodológica', 'Fase interpretativa'],
+      answer: 1,
+      feedback: 'La fase CONCEPTUAL es el punto de partida: comienza con la identificación de una situación problemática y culmina con la construcción del marco teórico. La formulación del problema ocurre al inicio de esta fase.'
+    },
+    {
+      text: 'Según Hernández Sampieri, ¿qué etapa del proceso de investigación es la más determinante?',
+      options: ['La recolección de datos', 'La redacción del informe final', 'La formulación del problema de investigación', 'El análisis estadístico'],
+      answer: 2,
+      feedback: 'Hernández Sampieri y colaboradores sostienen que la formulación del problema es la etapa más importante: un problema mal planteado arrastra errores en los objetivos, en el diseño y en el análisis, sin importar el rigor con que se ejecuten las etapas siguientes.'
+    },
+    {
+      text: '¿Qué tipo de diseño de investigación es el más frecuente en los estudios publicados en revistas de enfermería latinoamericanas?',
+      options: ['Experimental aleatorizado', 'Correlacional longitudinal', 'Descriptivo transversal cuantitativo', 'Cualitativo fenomenológico'],
+      answer: 2,
+      feedback: 'Según el análisis bibliométrico de Morales-Castillo et al. (2011), el 77.5% de los estudios en revistas de enfermería latinoamericanas son cuantitativos, y dentro de ellos el diseño descriptivo transversal es el más frecuente (56%).'
+    },
+    {
+      text: '¿En qué tipo de estudio NO es obligatorio plantear una hipótesis?',
+      options: ['Estudio experimental', 'Estudio cuasiexperimental', 'Estudio correlacional', 'Estudio descriptivo transversal'],
+      answer: 3,
+      feedback: 'En los estudios DESCRIPTIVOS el objetivo es simplemente medir o caracterizar un fenómeno, sin establecer relaciones entre variables. Por eso no corresponde plantear una hipótesis estadística. La hipótesis es obligatoria en estudios analíticos (correlacionales) y experimentales.'
+    },
+    {
+      text: '¿Cuál es la diferencia fundamental entre una variable independiente y una dependiente?',
+      options: ['La VI siempre es cualitativa y la VD cuantitativa', 'La VI es el factor que supone influir; la VD es el resultado que se quiere explicar', 'La VI se mide antes y la VD después', 'La VI es obligatoria; la VD es opcional'],
+      answer: 1,
+      feedback: 'La variable INDEPENDIENTE es el factor que el investigador manipula o supone que influye. La variable DEPENDIENTE es el resultado que se quiere explicar o medir, y "depende" de la independiente. Esta distinción organiza el análisis aunque no siempre implica causalidad real.'
+    },
+    {
+      text: '¿Cuál de estos elementos NO debe contener un problema de investigación bien formulado?',
+      options: ['La variable o fenómeno de interés', 'La población específica', 'El instrumento o metodología a usar', 'El contexto o lugar del estudio'],
+      answer: 2,
+      feedback: 'El problema de investigación NO describe el método. Un error frecuente es incluir el instrumento en el enunciado del problema ("se aplicará una encuesta…"). El problema enuncia qué se desconoce (variable, población, contexto, período), no cómo se va a investigar.'
+    },
+    {
+      text: '¿Qué escala de medición tiene la variable "nivel de dolor" clasificada en: leve / moderado / severo?',
+      options: ['Nominal', 'Ordinal', 'De intervalo', 'De razón'],
+      answer: 1,
+      feedback: 'La escala ORDINAL clasifica en categorías con orden entre sí (leve < moderado < severo), pero la distancia entre categorías no es uniforme ni medible. El nivel de dolor, la escala de Apgar y el nivel educativo son ejemplos típicos de variables ordinales en enfermería.'
+    },
+    {
+      text: '¿Cuál de las siguientes fuentes es válida para identificar un problema de investigación en enfermería según el capítulo?',
+      options: ['Solo la estadística sanitaria del Ministerio de Salud', 'Solo la revisión de literatura científica', 'La observación clínica, la literatura, la estadística sanitaria, las políticas de salud y la teoría de enfermería', 'Solo la teoría de enfermería (Orem, Roy, etc.)'],
+      answer: 2,
+      feedback: 'El capítulo identifica cinco fuentes válidas: (1) observación clínica directa, (2) revisión de literatura científica, (3) estadística sanitaria, (4) análisis de políticas y programas de salud, y (5) teoría de enfermería. Todas son válidas y complementarias.'
+    }
+  ]
+};
+
+/* ========================================================
+   JUEGO 1 Y 5 — MÚLTIPLE OPCIÓN
+   ======================================================== */
+let currentGame = null;
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function startGame(name) {
+  const map = { errores: gameErrores, variables_legacy: null, trivia: gameTrivia };
+  let game;
+  if (name === 'errores') game = gameErrores;
+  else if (name === 'trivia') game = gameTrivia;
+  else if (name === 'variables') { startVariablesGame(); return; }
+  else if (name === 'disenios') { startDragGame(); return; }
+  else if (name === 'roxana') { startRoxanaGame(); return; }
+  else return;
+
+  currentGame = game;
+  currentQ = 0;
+  score = 0;
+  answered = false;
+
+  document.getElementById('game-nav-title').textContent = 'InvestigaEnf / ' + game.title.replace(/[🔍🏆📋📊🔗]/g, '').trim();
+  showScreen('game-play');
+  renderMCQQuestion();
+}
+
+function renderMCQQuestion() {
+  const q = currentGame.questions[currentQ];
+  const total = currentGame.questions.length;
+  answered = false;
+
+  const content = document.getElementById('game-play-content');
+  content.innerHTML = `
+    <div class="game-play-inner">
+      <div class="game-header">
+        <div class="game-title-area">
+          <h2>${currentGame.title}</h2>
+          <p>${currentGame.subtitle}</p>
+        </div>
+        <div class="score-badge">Puntos: <span>${score}</span></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width:${((currentQ)/total)*100}%"></div>
+      </div>
+      <div class="question-card">
+        <div class="question-label">Pregunta ${currentQ+1} de ${total}</div>
+        <div class="question-text">${q.text}${q.quote ? `<em>${q.quote}</em>` : ''}</div>
+      </div>
+      <div class="options-list" id="options-list">
+        ${q.options.map((opt, i) => `
+          <button class="option-btn" onclick="selectMCQ(${i})" id="opt-${i}">
+            <span class="option-letter">${['A','B','C','D'][i]}</span>
+            <span>${opt}</span>
+          </button>`).join('')}
+      </div>
+      <div class="feedback-box" id="feedback-box"></div>
+      <button class="btn-next" id="btn-next" onclick="nextMCQ()">
+        ${currentQ < total-1 ? 'Siguiente pregunta →' : 'Ver resultados 🏁'}
+      </button>
+    </div>`;
+}
+
+function selectMCQ(idx) {
+  if (answered) return;
+  answered = true;
+  const q = currentGame.questions[currentQ];
+  const total = currentGame.questions.length;
+
+  document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+  const selected = document.getElementById('opt-' + idx);
+  const correct  = document.getElementById('opt-' + q.answer);
+
+  if (idx === q.answer) {
+    selected.classList.add('correct');
+    score++;
+  } else {
+    selected.classList.add('wrong');
+    correct.classList.add('correct');
+  }
+
+  const fb = document.getElementById('feedback-box');
+  fb.textContent = q.feedback;
+  fb.className = 'feedback-box show ' + (idx === q.answer ? 'good' : 'bad');
+
+  document.getElementById('btn-next').classList.add('show');
+
+  // update progress
+  document.querySelector('.progress-bar-fill').style.width = `${((currentQ+1)/total)*100}%`;
+}
+
+function nextMCQ() {
+  currentQ++;
+  if (currentQ >= currentGame.questions.length) {
+    showResults(score, currentGame.questions.length, currentGame.title);
+  } else {
+    renderMCQQuestion();
+  }
+}
+
+/* ========================================================
+   JUEGO 2 — DRAG & DROP DISEÑOS
+   ======================================================== */
+let draggedItemId = null;
+let zoneMap = {}; // zoneId -> [itemIds]
+
+function startDragGame() {
+  currentGame = gameDiseños;
+  zoneMap = {};
+  gameDiseños.zones.forEach(z => { zoneMap[z.id] = []; });
+
+  document.getElementById('game-nav-title').textContent = 'InvestigaEnf / Conecta con su diseño';
+  showScreen('game-play');
+
+  const content = document.getElementById('game-play-content');
+  const itemsHtml = gameDiseños.items.map(it =>
+    `<div class="drag-item" id="drag-${it.id}" draggable="true"
+      ondragstart="onDragStart(event,'${it.id}')"
+      ondragend="onDragEnd(event)">${it.text}</div>`
+  ).join('');
+
+  const zonesHtml = gameDiseños.zones.map(z =>
+    `<div class="drop-zone" id="zone-${z.id}"
+      ondragover="onDragOver(event)"
+      ondragleave="onDragLeave(event)"
+      ondrop="onDrop(event,'${z.id}')">
+      <div class="drop-zone-label">${z.label}</div>
+      <div class="drop-zone-items" id="zone-items-${z.id}"></div>
+    </div>`
+  ).join('');
+
+  content.innerHTML = `
+    <div class="game-play-inner">
+      <div class="game-header">
+        <div class="game-title-area">
+          <h2>${gameDiseños.title}</h2>
+          <p>${gameDiseños.subtitle}</p>
+        </div>
+      </div>
+      <div class="dragdrop-container">
+        <div class="drag-items-col">
+          <h4>Preguntas de investigación</h4>
+          <div id="drag-items-list">${itemsHtml}</div>
+        </div>
+        <div class="drop-zones-col">
+          <h4>Diseños metodológicos</h4>
+          ${zonesHtml}
+        </div>
+      </div>
+      <div class="feedback-box" id="drag-feedback"></div>
+      <button class="btn-check" onclick="checkDragGame()">Verificar ✓</button>
+      <button class="btn-next show" style="display:none" id="drag-next" onclick="showScreen('games')">Volver a juegos</button>
+    </div>`;
+}
+
+function onDragStart(e, itemId) {
+  draggedItemId = itemId;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function onDragEnd(e) { e.target.classList.remove('dragging'); }
+function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function onDragLeave(e) { e.currentTarget.classList.remove('over'); }
+
+function onDrop(e, zoneId) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('over');
+  if (!draggedItemId) return;
+
+  // Remove from any existing zone
+  Object.keys(zoneMap).forEach(zid => {
+    zoneMap[zid] = zoneMap[zid].filter(id => id !== draggedItemId);
+    renderZoneItems(zid);
+  });
+
+  zoneMap[zoneId].push(draggedItemId);
+  renderZoneItems(zoneId);
+
+  const origEl = document.getElementById('drag-' + draggedItemId);
+  if (origEl) origEl.classList.add('placed');
+  draggedItemId = null;
+}
+
+function renderZoneItems(zoneId) {
+  const container = document.getElementById('zone-items-' + zoneId);
+  if (!container) return;
+  const items = zoneMap[zoneId];
+  const itemDefs = gameDiseños.items.reduce((a, it) => { a[it.id] = it; return a; }, {});
+  container.innerHTML = items.map(id => `
+    <div class="dropped-item" id="dropped-${id}">
+      <span style="font-size:0.78rem">${itemDefs[id]?.text || id}</span>
+      <button class="remove-drop" onclick="removeDrop('${id}','${zoneId}')" title="Quitar">✕</button>
+    </div>`).join('');
+}
+
+function removeDrop(itemId, zoneId) {
+  zoneMap[zoneId] = zoneMap[zoneId].filter(id => id !== itemId);
+  renderZoneItems(zoneId);
+  const orig = document.getElementById('drag-' + itemId);
+  if (orig) orig.classList.remove('placed');
+}
+
+function checkDragGame() {
+  let correct = 0; let total = 0;
+  gameDiseños.zones.forEach(z => {
+    const zone = document.getElementById('zone-' + z.id);
+    const placed = zoneMap[z.id];
+    let zoneOk = true;
+    placed.forEach(itemId => {
+      total++;
+      const el = document.getElementById('dropped-' + itemId);
+      if (z.correct.includes(itemId)) { correct++; if (el) el.classList.add('correct-item'); }
+      else { zoneOk = false; if (el) el.classList.add('wrong-item'); }
+    });
+    // Check missed items
+    z.correct.forEach(cid => { if (!placed.includes(cid)) zoneOk = false; });
+    if (zone) zone.classList.add(placed.length > 0 && zoneOk ? 'correct-zone' : 'wrong-zone');
+  });
+
+  const expectedTotal = gameDiseños.items.length;
+  const fb = document.getElementById('drag-feedback');
+  fb.className = 'feedback-box show ' + (correct === expectedTotal ? 'good' : 'bad');
+
+  if (correct === expectedTotal) {
+    fb.innerHTML = `✅ ¡Perfecto! Todas las preguntas están en el diseño correcto. Recuerda: el tipo de pregunta determina el diseño — si pregunta "¿cuántos?" es descriptivo; si pregunta "¿qué factores se asocian?" es correlacional; si evalúa una intervención es experimental/cuasiexperimental; si explora experiencias vividas es cualitativo fenomenológico.`;
+  } else {
+    fb.innerHTML = `Colocaste ${correct} de ${expectedTotal} correctas. Las marcadas en rojo no corresponden al diseño indicado. Pista: busca las palabras clave en cada pregunta — "¿Cuál es el nivel/prevalencia?" → descriptivo; "¿Qué factores se asocian?" → correlacional; "¿Cuál es el efecto de…?" → experimental; "¿Cómo vivencian…?" → fenomenológico.`;
+  }
+  document.getElementById('drag-next').style.display = 'inline-flex';
+}
+
+/* ========================================================
+   JUEGO 3 — CASO ROXANA (IA)
+   ======================================================== */
+let roxanaStep = 0;
+
+function startRoxanaGame() {
+  roxanaStep = 0;
+  document.getElementById('game-nav-title').textContent = 'InvestigaEnf / Caso Roxana';
+  showScreen('game-play');
+  renderRoxanaStep();
+}
+
+function renderRoxanaStep() {
+  const step = gameRoxana.steps[roxanaStep];
+  const total = gameRoxana.steps.length;
+  const content = document.getElementById('game-play-content');
+
+  content.innerHTML = `
+    <div class="game-play-inner">
+      <div class="game-header">
+        <div class="game-title-area">
+          <h2>${gameRoxana.title}</h2>
+          <p>Paso ${roxanaStep+1} de ${total}</p>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width:${((roxanaStep)/total)*100}%"></div>
+      </div>
+      <div class="question-card">
+        <div class="question-label">Pregunta ${roxanaStep+1}</div>
+        <div class="question-text">${step.question}</div>
+      </div>
+      ${step.context ? `<div class="case-text">${step.context}</div>` : ''}
+      <p class="case-input-label">Tu respuesta:</p>
+      <textarea class="case-textarea" id="roxana-input" placeholder="${step.placeholder}"></textarea>
+      <div class="ai-feedback-box" id="roxana-feedback"></div>
+      <button class="btn-check" id="roxana-submit" onclick="submitRoxana()">Enviar para evaluación ✦</button>
+      <button class="btn-next" id="roxana-next" onclick="nextRoxana()">
+        ${roxanaStep < total-1 ? 'Siguiente paso →' : '🏁 Finalizar'}
+      </button>
+    </div>`;
+}
+
+async function submitRoxana() {
+  const resp = document.getElementById('roxana-input').value.trim();
+  if (!resp) { alert('Escribe tu respuesta antes de enviar.'); return; }
+
+  const btn = document.getElementById('roxana-submit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Evaluando…';
+
+  const step = gameRoxana.steps[roxanaStep];
+  const fb = document.getElementById('roxana-feedback');
+  fb.className = 'ai-feedback-box';
+  fb.innerHTML = '';
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [{ role: 'user', content: step.aiPrompt(resp) }]
+      })
+    });
+    const data = await res.json();
+    if (data.text) {
+      fb.innerHTML = data.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      fb.className = 'ai-feedback-box show';
+      document.getElementById('roxana-next').classList.add('show');
+      document.querySelector('.progress-bar-fill').style.width = `${((roxanaStep+1)/gameRoxana.steps.length)*100}%`;
+    } else {
+      fb.innerHTML = 'No se pudo obtener retroalimentación. Intenta de nuevo.';
+      fb.className = 'ai-feedback-box show';
+    }
+  } catch (e) {
+    fb.innerHTML = 'Error de conexión. Verifica tu internet.';
+    fb.className = 'ai-feedback-box show';
+  }
+  btn.disabled = false;
+  btn.innerHTML = 'Enviar para evaluación ✦';
+}
+
+function nextRoxana() {
+  roxanaStep++;
+  if (roxanaStep >= gameRoxana.steps.length) {
+    showResults(null, null, gameRoxana.title, true);
+  } else {
+    renderRoxanaStep();
+  }
+}
+
+/* ========================================================
+   JUEGO 4 — VARIABLES
+   ======================================================== */
+let varQ = 0;
+let varScore = 0;
+
+function startVariablesGame() {
+  varQ = 0;
+  varScore = 0;
+  document.getElementById('game-nav-title').textContent = 'InvestigaEnf / Clasifica Variables';
+  showScreen('game-play');
+  renderVarQuestion();
+}
+
+function renderVarQuestion() {
+  const q = gameVariables.questions[varQ];
+  const total = gameVariables.questions.length;
+
+  const content = document.getElementById('game-play-content');
+  content.innerHTML = `
+    <div class="game-play-inner">
+      <div class="game-header">
+        <div class="game-title-area">
+          <h2>${gameVariables.title}</h2>
+          <p>${gameVariables.subtitle}</p>
+        </div>
+        <div class="score-badge">Puntos: <span>${varScore}</span></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width:${(varQ/total)*100}%"></div>
+      </div>
+      <div class="var-card">
+        <div class="question-label">Variable ${varQ+1} de ${total}</div>
+        <p>${q.text}</p>
+        <div class="var-selects">
+          <div class="var-select-wrap">
+            <label>Función en el estudio</label>
+            <select class="var-select" id="sel-func">
+              <option value="">— Elige —</option>
+              ${q.func.options.map((o,i) => `<option value="${i}">${o}</option>`).join('')}
+            </select>
+          </div>
+          <div class="var-select-wrap">
+            <label>Escala de medición</label>
+            <select class="var-select" id="sel-scale">
+              <option value="">— Elige —</option>
+              ${q.scale.options.map((o,i) => `<option value="${i}">${o}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="feedback-box" id="var-feedback"></div>
+      <button class="btn-check" onclick="checkVar()">Verificar ✓</button>
+      <button class="btn-next" id="var-next" onclick="nextVar()">
+        ${varQ < total-1 ? 'Siguiente variable →' : 'Ver resultados 🏁'}
+      </button>
+    </div>`;
+}
+
+function checkVar() {
+  const funcVal  = parseInt(document.getElementById('sel-func').value);
+  const scaleVal = parseInt(document.getElementById('sel-scale').value);
+  if (isNaN(funcVal) || isNaN(scaleVal)) { alert('Selecciona ambas opciones antes de verificar.'); return; }
+
+  const q = gameVariables.questions[varQ];
+  const total = gameVariables.questions.length;
+  let pts = 0;
+
+  const selFunc  = document.getElementById('sel-func');
+  const selScale = document.getElementById('sel-scale');
+  selFunc.disabled = true; selScale.disabled = true;
+
+  if (funcVal  === q.func.answer)  { selFunc.classList.add('correct-sel');  pts++; } else selFunc.classList.add('wrong-sel');
+  if (scaleVal === q.scale.answer) { selScale.classList.add('correct-sel'); pts++; } else selScale.classList.add('wrong-sel');
+
+  if (pts === 2) varScore++;
+
+  const fb = document.getElementById('var-feedback');
+  fb.textContent = q.feedback;
+  fb.className = 'feedback-box show ' + (pts === 2 ? 'good' : 'bad');
+
+  document.getElementById('var-next').classList.add('show');
+  document.querySelector('.progress-bar-fill').style.width = `${((varQ+1)/total)*100}%`;
+}
+
+function nextVar() {
+  varQ++;
+  if (varQ >= gameVariables.questions.length) {
+    showResults(varScore, gameVariables.questions.length, gameVariables.title);
+  } else {
+    renderVarQuestion();
+  }
+}
+
+/* ========================================================
+   RESULTADOS
+   ======================================================== */
+function showResults(score, total, gameTitle, isOpenEnded = false) {
+  const content = document.getElementById('game-play-content');
+  let emoji, title, msg;
+
+  if (isOpenEnded) {
+    emoji = '🌟'; title = '¡Ejercicio completado!';
+    msg = 'Completaste los tres pasos del caso de Roxana. La retroalimentación de la IA te ha guiado para mejorar cada elemento del perfil. ¡Practica formulando tu propio perfil en el Módulo 1!';
+  } else {
+    const pct = score / total;
+    if (pct === 1)       { emoji = '🏆'; title = '¡Perfecto!';   msg = `Obtuviste ${score} de ${total} puntos. ¡Dominas este tema! Puedes seguir practicando con otros juegos.`; }
+    else if (pct >= 0.7) { emoji = '🎉'; title = '¡Muy bien!';   msg = `Obtuviste ${score} de ${total} puntos. Vas muy bien. Repasa los conceptos donde fallaste y vuelve a intentarlo.`; }
+    else if (pct >= 0.5) { emoji = '📚'; title = 'En progreso';  msg = `Obtuviste ${score} de ${total} puntos. Te recomendamos releer la sección correspondiente del Capítulo 4 y volver a intentarlo.`; }
+    else                 { emoji = '💪'; title = '¡Sigue adelante!'; msg = `Obtuviste ${score} de ${total} puntos. Este tema necesita más práctica. Revisa el capítulo y vuelve a intentarlo, ¡puedes lograrlo!`; }
+  }
+
+  content.innerHTML = `
+    <div class="results-screen">
+      <div class="results-emoji">${emoji}</div>
+      <div class="results-title">${title}</div>
+      ${!isOpenEnded ? `<div class="results-score">${score}/${total}</div>` : ''}
+      <p class="results-msg">${msg}</p>
+      <div>
+        ${!isOpenEnded ? `<button class="btn-replay" onclick="startGame(currentGameId)">🔄 Repetir</button>` : ''}
+        <button class="btn-next show" onclick="showScreen('games')">Volver a juegos</button>
+      </div>
+    </div>`;
+}
+
+// Track current game ID for replay
+let currentGameId = '';
+const origStartGame = window.startGame;
+window.startGame = function(name) {
+  currentGameId = name;
+  if (name === 'errores') { currentGame = gameErrores; currentQ = 0; score = 0; answered = false; document.getElementById('game-nav-title').textContent = 'InvestigaEnf / ¿Correcto o incorrecto?'; showScreen('game-play'); renderMCQQuestion(); }
+  else if (name === 'trivia') { currentGame = gameTrivia; currentQ = 0; score = 0; answered = false; document.getElementById('game-nav-title').textContent = 'InvestigaEnf / Trivia'; showScreen('game-play'); renderMCQQuestion(); }
+  else if (name === 'variables') { startVariablesGame(); }
+  else if (name === 'disenios') { startDragGame(); }
+  else if (name === 'roxana') { startRoxanaGame(); }
+};
+
+// Init
+showScreen('home');
+</script>
+</body>
+</html>
